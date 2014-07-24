@@ -9,12 +9,13 @@
 		private $id;
 		private $status;
 
-		private function __construct($post_message, $post_user, $post_title, $post_id)
+		private function __construct($post_message, $post_user, $post_title, $post_id, $post_date)
 		{
 			$this->message = htmlspecialchars($post_message);
 			$this->user = htmlspecialchars($post_user);
 			$this->title = htmlspecialchars($post_title);
 			$this->id = $post_id;
+			$this->date = $post_date;
 		}
 
 		public function checkMessage($post_message)
