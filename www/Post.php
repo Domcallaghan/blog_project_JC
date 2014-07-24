@@ -19,11 +19,6 @@
 
 		}
 
-		public function sendMessage()
-		{
-
-		}
-
 		public function showMessage()
 		{
 
@@ -31,7 +26,7 @@
 
 		public function changeStatus()
 		{
-			
+
 		}
 
 	}

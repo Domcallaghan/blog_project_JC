@@ -23,9 +23,9 @@
 
 		public function selectMessagesByStatus($status){
 
-			$query = $bdd->prepare('SELECT * FROM POST WHERE status = ?');
-			$query->execute(array($status));
-			return $query;
+			$query = $bdd->prepare('SELECT * FROM POST WHERE status = ?'); // Prepare the query 
+			$query->execute(array($status)); // execute the query
+			return $query; // return the result
 		}
 
 		
@@ -46,8 +46,9 @@
 		}
 		
 		public function updateStatus($status, $id_message)){
-	
-			$query = $bdd->prepare('ALTER TABLE POST where id = ?');
+
+			$query = $bdd->prepare('UPDATE post SET status = ? where id = ?'); // Prepare the query
+			$query->execute(array($status, $id_message)); // execute the query
 		}
-	}
+	
 ?>
