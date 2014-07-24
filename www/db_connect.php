@@ -4,16 +4,10 @@
 		private function _connectDB(){
 		
 		}
-		public function getValidateMessages(){
-		
-		}
-		
-		public function getUnvalidateMessages(){
-		
-		}
-		
-		public function getWaitingForValidationMessages(){
-		
+		public function getMessagesByStatus(){
+			$query = $bdd->prepare('SELECT * FROM POST WHERE status = ?');
+			$query->execute(array(status));
+			$return query;
 		}
 		
 		public function setNewMessage(){
