@@ -1,27 +1,30 @@
 <?php
 	class Database {
-		
+			// Connection values for the db
 		/**
 		* Constructor function to initialize the pdo connection line
 		*/
-		private function __construct(){
-			
-			// Connection values for the db
-			private $dbname = 'vdm_project';
-			private $dblogin = 'root';
-			private $dbpassword = '';
+		private $bdd;
 
+		public function __construct(){
+			
+			 $dbname = 'vdm_project';
+			 $dblogin = 'root';
+			 $dbpassword = '';
 			try
 			{
-			    $bdd = new PDO('mysql:host=localhost;dbname='.$dbname.'', $dblogin, $dbpassword); // The PDO connection line 
+			    $this->bdd = new PDO('mysql:host=localhost;dbname='.$dbname.'', $dblogin, $dbpassword); // The PDO connection line 
 			}
-			catch(Exception $e) // throw an error if a problem is alive
+			catch(Exception $e) // catch the exception
 			{
-			    echo "Impossible d'accéder à la base de données"; // add a error message in the page
+				throw $e; // throw an exception
 			}
-
 		}
 		
+		public function getBdd()
+		{
+			return $this->bdd;
+		}
 		/**
 		* Function to select messages by their status 
 		* $status INT param
@@ -29,7 +32,7 @@
 		public function selectMessagesByStatus($status){
 			try 
 			{
-				$query = $bdd->prepare('SELECT * FROM POST WHERE status = ?'); // Prepare the query 
+				$query = $this->bdd->prepare('SELECT * FROM POST WHERE status = ?'); // Prepare the query 
 				$query->execute(array($status)); // execute the query 
 				return $query; // return the result of teh query
 			} 
@@ -37,7 +40,7 @@
 				throw $e; // throw an exception
 			}
 
-			$query = $bdd->prepare('SELECT * FROM POST WHERE status = ?'); // Prepare the query 
+			$query = $this->bdd->prepare('SELECT * FROM POST WHERE status = ?'); // Prepare the query 
 			$query->execute(array($status)); // execute the query
 			return $query; // return the result
 		}
@@ -54,13 +57,13 @@
 			try {
 				if(empty($mail)) // Check if the mail is empty
 				{
-					$query = $bdd->prepare('INSERT INTO post(title, message, author, post_date) VALUES(?, ?, ?, ?)'); // Prepare the without mail query
+					$query = $this->bdd->prepare('INSERT INTO post(title, message, author, post_date) VALUES(?, ?, ?, ?)'); // Prepare the without mail query
 					$query->execute(array($title, $message, $author, $post_date)); // execute the query
 
 				}
 				else // If the mail is here
 				{
-					$query = $bdd->prepare('INSERT INTO post(title, message, author, post_date, mail) VALUES(?, ?, ?, ?, ?)'); // Prepare the with mail query
+					$query = $this->bdd->prepare('INSERT INTO post(title, message, author, post_date, mail) VALUES(?, ?, ?, ?, ?)'); // Prepare the with mail query
 					$query->execute(array($title, $message, $author, $post_date, $mail)); // execute the cubrid_query(query)
 				}
 			} catch(Exception $e) {
@@ -73,10 +76,10 @@
 		* $status INT param
 		* $id_message INT param
 		*/
-		public function updateStatusById($status, $id_message)){
+		public function updateStatusById($status, $id_message){
 			try 
 			{
-				$query = $bdd->prepare('UPDATE TABLE POST SET status = ? WHERE id = ?'); // Prepare the query 
+				$query = $this->bdd->prepare('UPDATE TABLE POST SET status = ? WHERE id = ?'); // Prepare the query 
 				$query->execute(array($status, $id_message)); // execute the query 
 				return "le statut à été mis à jour"; // return an information message
 			} 
