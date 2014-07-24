@@ -1,7 +1,9 @@
 <?php
 	class Database {
 		
-
+		/**
+		* Constructor function to initialize the pdo connection line
+		*/
 		private function __construct(){
 			
 			// Connection values for the db
@@ -15,20 +17,24 @@
 			}
 			catch(Exception $e) // throw an error if a problem is alive
 			{
-			    die('Erreur : '.$e->getMessage());
 			    echo "Impossible d'accéder à la base de données"; // add a error message in the page
 			}
 
 		}
 		
-		// Select messages by their status
+		/**
+		* Function to select messages by their status 
+		* $status INT param
+		*/
 		public function selectMessagesByStatus($status){
-			try {
-				$query = $bdd->prepare('SELECT * FROM POST WHERE status = ?');
-				$query->execute(array($status));
-				return $query;
-			} catch(Exception $e) {
-				throw $e;
+			try 
+			{
+				$query = $bdd->prepare('SELECT * FROM POST WHERE status = ?'); // Prepare the query 
+				$query->execute(array($status)); // execute the query 
+				return $query; // return the result of teh query
+			} 
+			catch(Exception $e) {
+				throw $e; // throw an exception
 			}
 
 			$query = $bdd->prepare('SELECT * FROM POST WHERE status = ?'); // Prepare the query 
@@ -36,7 +42,14 @@
 			return $query; // return the result
 		}
 
-		// Insert a new message in DB
+		/**
+		* Function to insert a new message in the database 
+		* $title VARCHAR param
+		* $message VARCHAR (300) param
+		* $author VARCHAR param
+		* $post_date DATE param
+		* $mail VARCHAR param
+		*/
 		public function insertNewMessage($title, $message, $author, $post_date, $mail){
 			try {
 				if(empty($mail)) // Check if the mail is empty
@@ -55,26 +68,22 @@
 			}
 		}
 		
-		// Update the status of the message
+		/**
+		* Function to update the status of a message by his status
+		* $status INT param
+		* $id_message INT param
+		*/
 		public function updateStatusById($status, $id_message)){
-			try {
-				$query = $bdd->prepare('UPDATE TABLE POST SET status = ? WHERE id = ?');
-				$query->execute(array($status, $id_message));
-				return "le statut à été mis à jour";
-			} catch(Exception $e) {
-				throw $e;
-				return "Un erreur s'est produite, veuillez réessayer plus tard";
+			try 
+			{
+				$query = $bdd->prepare('UPDATE TABLE POST SET status = ? WHERE id = ?'); // Prepare the query 
+				$query->execute(array($status, $id_message)); // execute the query 
+				return "le statut à été mis à jour"; // return an information message
+			} 
+			catch(Exception $e) {
+				throw $e; // throw an exception
+				return "Un erreur s'est produite, veuillez réessayer plus tard"; // return an information message
 			}
 		}
-	}
-
-		public function updateStatus($status, $id_message)){
-			try {
-				$query = $bdd->prepare('UPDATE post SET status = ? where id = ?'); // Prepare the query
-				$query->execute(array($status, $id_message)); // execute the query
-			} catch(Exception $e) {
-				throw $e;
-			}
-		}
-	
+	}	
 ?>
