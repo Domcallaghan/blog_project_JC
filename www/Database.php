@@ -21,10 +21,6 @@
 			}
 		}
 		
-		public function getBdd()
-		{
-			return $this->bdd;
-		}
 		/**
 		* Function to select messages by their status 
 		* $status INT param
