@@ -69,9 +69,12 @@
 	}
 
 		public function updateStatus($status, $id_message)){
-
-			$query = $bdd->prepare('UPDATE post SET status = ? where id = ?'); // Prepare the query
-			$query->execute(array($status, $id_message)); // execute the query
+			try {
+				$query = $bdd->prepare('UPDATE post SET status = ? where id = ?'); // Prepare the query
+				$query->execute(array($status, $id_message)); // execute the query
+			} catch(Exception $e) {
+				throw $e;
+			}
 		}
 	
 ?>
