@@ -4,22 +4,19 @@
 		private function _connectDB(){
 		
 		}
-		public function getMessagesByStatus(){
+		public function selectMessagesByStatus($status){
 			$query = $bdd->prepare('SELECT * FROM POST WHERE status = ?');
-			$query->execute(array(status));
+			$query->execute(array($status));
 			$return query;
 		}
 		
-		public function setNewMessage(){
+		public function insertNewMessage(){
 	
 		}
 		
-		public function validateMessage(){
-		
+		public function updateStatus($status)){
+			$query = $bdd->prepare('ALTER TABLE POST where id = ?');
 		}
-		
-		public function unvalidateMessage(){
-		
-		}
+
 	}
 ?>
