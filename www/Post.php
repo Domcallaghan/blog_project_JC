@@ -1,5 +1,5 @@
 <?php
-
+	
 	class Post {
 
 		private $message;
@@ -17,14 +17,15 @@
 		public function checkForm()
 		{
 
-		}
-
+		}		
+		// Return the post in a html division
 		public function showMessage()
 		{
-
+			//A mettre en forme
+			return "<div class=\"message\">" + $title + "---" + $message + "---" + $user+ "</div>";
 		}
 
-		public function changeStatus()
+		public function changeStatus($newStatus)
 		{
 
 		}
