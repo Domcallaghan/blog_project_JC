@@ -8,6 +8,8 @@
 	</head>
 
 	<body>
+		
+		<h1>Bienvenue sur notre blog :)</h1></br>
 		<div class="blog">
 
 			<?php include("Treatment.php"); ?>
