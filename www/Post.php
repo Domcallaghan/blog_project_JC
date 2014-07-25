@@ -25,14 +25,8 @@
 			$this->_message = htmlspecialchars($post_message);
 			$this->_user = htmlspecialchars($post_user);
 			$this->_title = htmlspecialchars($post_title);
-			$this->_id = 0;
+			$this->_id = $post_id;
 			$this->_date = $post_date;
-
-			$this->message = htmlspecialchars($post_message);
-			$this->user = htmlspecialchars($post_user);
-			$this->title = htmlspecialchars($post_title);
-			$this->id = $post_id;
-			$this->date = $post_date;
 
 			if(empty($post_mail))
 			{
@@ -99,10 +93,10 @@
 			$this->_status = $newStatus; 
 		}
 
-			public function showAdminMessage()
+		public function showAdminMessage()
 		{
 			//A mettre en forme
-			return "<div class=\"post\"><form method='POST' action='Treatment_admin_confirmation.php' >".$this->title."---".$this->message."---".$this->user. "- id - ".$this->id. " <input hidden name='id_post' value=".$this->id." /><input type='checkbox' name='valid' value='1'>  <input type='submit' name='Valider' value='Ok' /></form></div>";
+			return "<div class=\"admin_post\"><form method='POST' action='Treatment_admin_confirmation.php' >".$this->_title."---".$this->_message."---".$this->_user."- id - ".$this->_id. " <input hidden name='id_post' value=".$this->_id." /><input type='checkbox' name='valid' value='1'>  <input type='submit' name='Valider' value='Ok' /></form></div>";
 		}
 
 	}
