@@ -17,6 +17,7 @@
 			<form name="Add a post" method="POST" action="Treatment.php">
 				<input type="text" name="login_post" placeholder="Login (Obligatoire)"/><br/>
 				<input type="text" name="mail_post" placeholder="Mail (facultatif)"/><br/>
+				<input type="text" name="title_post" placeholder="Titre (Obligatoire)"/><br/>
 				<textarea id="textarea" name="content_post" rows="5" cols="20" placeholder="Votre anecdote (Obligatoire)"></textarea><br/>
 				<input type="submit" name="Send" value="Poster">
 			</form>

@@ -8,20 +8,49 @@
 		public $title;
 		public $id;
 		public $status;
+		private $mail;
 
-		public function __construct($post_message, $post_user, $post_title, $post_id, $post_date)
+		public function __construct($post_message, $post_user, $post_title, $post_date, $post_mail)
 		{
 
 			$this->message = htmlspecialchars($post_message);
 			$this->user = htmlspecialchars($post_user);
 			$this->title = htmlspecialchars($post_title);
-			$this->id = $post_id;
+			$this->id = 0;
 			$this->date = $post_date;
+
+			if(empty($post_mail))
+			{
+				$this->mail = "";
+			}
+			else
+			{
+				$this->mail = htmlspecialchars($post_mail);
+			}
 		}
 
-		public function checkMessage($post_message)
+		// GETTERS
+		public function getTitle()
 		{
-			if (strlen($post_message) <= 300) 
+			return $this->title;
+		}
+		public function getMessage()
+		{
+			return $this->message;
+		}
+		public function getAuthor()
+		{
+			return $this->user;
+		}
+		public function getMail()
+		{
+			return $this->mail;
+		}
+		// END GETTERS
+
+		public function checkMessage()
+		{
+			if (strlen($this->message) <= 300) 
 			{
 				return true;
 			}
@@ -39,8 +68,8 @@
 
 		public function changeStatus($newStatus)
 		{
+			$this->status = $newStatus; // change the status
 
 		}
-
 	}
 ?>
