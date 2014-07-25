@@ -2,15 +2,16 @@
 	
 	class Post {
 
-		private $message;
-		private $user;
-		private $date;
-		private $title;
-		private $id;
-		private $status;
+		public $message;
+		public $user;
+		public $date;
+		public $title;
+		public $id;
+		public $status;
 
-		private function __construct($post_message, $post_user, $post_title, $post_id, $post_date)
+		public function __construct($post_message, $post_user, $post_title, $post_id, $post_date)
 		{
+
 			$this->message = htmlspecialchars($post_message);
 			$this->user = htmlspecialchars($post_user);
 			$this->title = htmlspecialchars($post_title);
@@ -33,7 +34,7 @@
 		public function showMessage()
 		{
 			//A mettre en forme
-			return "<div class=\"message\">" + $title + "---" + $message + "---" + $user+ "</div>";
+			return "<div class=\"message\">".$this->title."---".$this->message."---".$this->user."</div>";
 		}
 
 		public function changeStatus($newStatus)

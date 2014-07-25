@@ -1,25 +1,21 @@
 
 <?php
+
 	include_once("Database.php");
 	include_once("Post.php");
 	
+
 	
+	$db = new Database();
+	$query =  $db->selectMessagesByStatus(1);
 	
+	$a = array();
 	
-	function makeTheBlog(){
-	
-		selectMessagesByStatus(1);
-		foreach(query.fetch){
-			
-			// creer des objets pour chaque fetch
-			// appeler showmessage pour chaque obj
-			
-		
-		}
-	
-	
+	foreach($query as $post){
+			array_push($a, new Post($post['text'],$post['author'],$post['title'],$post['id'],$post['date']));
 	}
-	
-	
-	
+	for($i = 0; $i < sizeof($a); $i++){
+		echo $a[$i]->showMessage();
+	}
+
 ?>
