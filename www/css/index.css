@@ -6,3 +6,17 @@
 {
 	border: 1px solid blue; 
 }
+
+.blog
+{ 
+	 border-width:1px;
+	 border-style:solid;
+	 border-color:red;
+}
+
+.post
+{
+	 border-width:1px;
+	 border-style:solid;
+	 border-color:black;
+}

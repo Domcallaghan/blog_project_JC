@@ -34,7 +34,7 @@
 		public function showMessage()
 		{
 			//A mettre en forme
-			return "<div class=\"message\">".$this->title."---".$this->message."---".$this->user."</div>";
+			return "<div class=\"post\">".$this->title."---".$this->message."---".$this->user."</div>";
 		}
 
 		public function changeStatus($newStatus)
