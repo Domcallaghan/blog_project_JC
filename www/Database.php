@@ -10,7 +10,7 @@
 		// SQL QUERIES AS CONSTANTS
 		const SQL_SELECT_POST_BY_STATUS = 'SELECT * FROM POST WHERE status = ? ORDER BY date DESC';
 		const SQL_INSERT_POST = 'INSERT INTO post(title, message, author, post_date, mail) VALUES(?, ?, ?, ?, ?)';
-		const SQL_UDPATE_POST = 'UPDATE TABLE POST SET status = ? WHERE id = ?';
+		const SQL_UDPATE_POST = 'UPDATE post SET status = ? WHERE id = ?';
 		const SQL_SELECT_COM = 'SELECT * FROM comment';
 		const SQL_DELETE_COM = 'DELETE FROM comment WHERE id = ?';
 		const SQL_INSERT_COM = 'INSERT INTO comment(com_text, author, fk_id_post) VALUES(?, ?, ?)';

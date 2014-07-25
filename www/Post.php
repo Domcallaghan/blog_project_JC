@@ -19,7 +19,7 @@
 		* @param $post_date {date} The date of the post
 		* @param $post_mail {string} The mail of the user
 		*/
-		public function __construct($post_message, $post_user, $post_title, $post_date, $post_mail)
+		public function __construct($post_message, $post_user, $post_title, $post_date, $post_mail, $post_id)
 		{
 			// Secure the post with the htmlspecialchars.
 			$this->_message = htmlspecialchars($post_message);
@@ -27,6 +27,12 @@
 			$this->_title = htmlspecialchars($post_title);
 			$this->_id = 0;
 			$this->_date = $post_date;
+
+			$this->message = htmlspecialchars($post_message);
+			$this->user = htmlspecialchars($post_user);
+			$this->title = htmlspecialchars($post_title);
+			$this->id = $post_id;
+			$this->date = $post_date;
 
 			if(empty($post_mail))
 			{
@@ -92,6 +98,12 @@
 		{	
 			$this->_status = $newStatus; 
 		}
-		
+
+			public function showAdminMessage()
+		{
+			//A mettre en forme
+			return "<div class=\"post\"><form method='POST' action='Treatment_admin_confirmation.php' >".$this->title."---".$this->message."---".$this->user. "- id - ".$this->id. " <input hidden name='id_post' value=".$this->id." /><input type='checkbox' name='valid' value='1'>  <input type='submit' name='Valider' value='Ok' /></form></div>";
+		}
+
 	}
 ?>
