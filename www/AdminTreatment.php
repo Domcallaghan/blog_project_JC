@@ -14,7 +14,6 @@
 	for($i = 0; $i < sizeof($a); $i++){
 		
 		echo $a[$i]->showAdminMessage();
-
 	}
 
 ?>

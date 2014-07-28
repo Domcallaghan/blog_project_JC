@@ -11,13 +11,14 @@
 		const SQL_SELECT_POST_BY_STATUS = 'SELECT * FROM post WHERE status = ? ORDER BY post_date DESC';
 		const SQL_INSERT_POST = 'INSERT INTO post(title, message, author, post_date, mail) VALUES(?, ?, ?, ?, ?)';
 		const SQL_UDPATE_POST = 'UPDATE post SET status = ? WHERE id = ?';
-		const SQL_SELECT_COM = 'SELECT * FROM comment';
+		const SQL_SELECT_COM = 'SELECT * FROM comment WHERE fk_id_post = ? ';
 		const SQL_DELETE_COM = 'DELETE FROM comment WHERE id = ?';
 		const SQL_INSERT_COM = 'INSERT INTO comment(com_text, author, fk_id_post) VALUES(?, ?, ?)';
 		
 
 		/**
 		* Constructor function to initialize the pdo connection line
+		* @constructor 
 		*/
 		public function __construct(){
 
@@ -33,7 +34,8 @@
 
 		/**
 		* Function to select messages by their status 
-		* $status INT param
+		* @param $status INT 
+		* @return {Query}
 		*/
 		public function selectMessagesByStatus($status){
 
@@ -50,11 +52,11 @@
 
 		/**
 		* Function to insert a new message in the database 
-		* $title VARCHAR param
-		* $message VARCHAR (300) param
-		* $author VARCHAR param
-		* $post_date DATE param
-		* $mail VARCHAR param
+		* @param $title VARCHAR
+		* @param $message VARCHAR (300)
+		* @param $author VARCHAR
+		* @param $post_date DATE
+		* @param $mail VARCHAR
 		*/
 		public function insertNewMessage($title, $message, $author, $post_date, $mail){
 
@@ -71,8 +73,9 @@
 		
 		/**
 		* Function to update the status of a message by his status
-		* $status INT param
-		* $id_message INT param
+		* @param $status INT 
+		* @param $id_message INT 
+		* @return {string}
 		*/
 		public function updateStatusById($status, $id_message){
 			try 
@@ -90,9 +93,10 @@
 
 		/**
 		* Function to insert a new comment to a post 
-		* $author VARCHAR param
-		* $message VARCHAR (500) param
-		* $id_post INT param
+		* @param $author VARCHAR 
+		* @param $message VARCHAR (500) 
+		* @param $id_post INT 
+		* @return {string}
 		*/
 		public function insertNewComment($author, $message, $id_post)
 		{
@@ -110,7 +114,8 @@
 
 		/**
 		* Function to delete a existing comment
-		* $id_com INT param
+		* @param $id_com INT 
+		* @return {string}
 		*/
 		public function deleteComment($id_com)
 		{
@@ -128,13 +133,14 @@
 
 		/**
 		* Function to select all the comments
+		* @return {Query}
 		*/
-		public function selectComment()
+		public function selectComment($fk_id_post)
 		{
 			try
 			{
 				$query = $this->bdd->prepare(Database::SQL_SELECT_COM); // Prepare the query 
-				$query->execute(); // execute the query  
+				$query->execute(array($fk_id_post)); // execute the query  
 				return $query; // return the result of the query 
 			}
 			catch(Exception $e)
