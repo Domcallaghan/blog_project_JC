@@ -1,0 +1,35 @@
+body 
+{
+
+}
+h1
+{
+	color: red;
+	text-align:center;
+}
+#textarea
+{
+	resize: none;
+}
+#form_post_div
+{
+	text-align: center;
+	margin: left;
+	width: 25%;
+
+	border: 1px solid blue; 
+}
+
+.blog
+{ 
+	 text-align:center;
+	 margin: auto;
+	 width: 25%;
+}
+
+.post
+{
+	 border-width:1px;
+	 border-style:solid;
+	 border-color:black;
+}
