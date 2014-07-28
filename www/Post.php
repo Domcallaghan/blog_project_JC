@@ -80,7 +80,7 @@
 		*/
 		public function showMessage()
 		{
-			return "<div class=\"post\">".$this->_title."</br>".$this->_message."</br>".$this->_user."</br>".$this->_date."</br></br></div>";
+			return "<div class=\"post\">".$this->_title."</br>".$this->_message."</br>".$this->_user."</br>".$this->_date."</br></br><a href=Comments.php?id_post=".$this->_id.">Click here</a></div>";
 		}
 		
 		/**
@@ -96,7 +96,7 @@
 		public function showAdminMessage()
 		{
 			//A mettre en forme
-			return "<div class=\"admin_post\"><form method='POST' action='Treatment_admin_confirmation.php' >".$this->_title."---".$this->_message."---".$this->_user."- id - ".$this->_id. " <input hidden name='id_post' value=".$this->_id." /><input type='checkbox' name='valid' value='1'>  <input type='submit' name='Valider' value='Ok' /></form></div>";
+			return "<div class=\"post\"><form method='POST' action='Treatment_admin_confirmation.php' >".$this->_title."<br /> Message : ".$this->_message."<br /> Login : ".$this->_user."<br /> id - ".$this->_id. " <input hidden name='id_post' value=".$this->_id." /><input type='checkbox' name='valid' value='1'>  <input type='submit' name='Valider' value='Ok' /></form></div>";
 		}
 
 	}
