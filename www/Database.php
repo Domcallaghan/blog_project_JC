@@ -14,7 +14,7 @@
 		const SQL_SELECT_COM = 'SELECT * FROM comment';
 		const SQL_DELETE_COM = 'DELETE FROM comment WHERE id = ?';
 		const SQL_INSERT_COM = 'INSERT INTO comment(com_text, author, fk_id_post) VALUES(?, ?, ?)';
-
+		
 
 		/**
 		* Constructor function to initialize the pdo connection line

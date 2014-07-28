@@ -86,7 +86,7 @@
 		/**
 		* Change the status of the post.
 		* @method changeStatus
-		* @param $newStatus
+		* @param {integer} $newStatus 
 		*/
 		public function changeStatus($newStatus)
 		{	

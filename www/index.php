@@ -4,6 +4,12 @@
 		<meta charset="utf-8">
 		<title>Post and comment</title>
 		<link rel="stylesheet" type="text/css" href="css/index.css">
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/blog-post.css" rel="stylesheet">
+
 	</head>
 
 	<body>
@@ -22,7 +28,13 @@
 				<input type="submit" name="Send" value="Poster">
 			</form>
 		</div>
+		
+		<!-- jQuery Version 1.11.0 -->
+		<script src="js/jquery-1.11.0.js"></script>
 
+		<!-- Bootstrap Core JavaScript -->
+		<script src="js/bootstrap.min.js"></script>
+	
 	</body>
 
 
