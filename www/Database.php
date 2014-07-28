@@ -150,6 +150,10 @@
 				return "Un erreur s'est produite, veuillez réessayer plus tard"; // return an information message
 			}
 		}
+		/**
+		* Function to select all the comments
+		* @return {Query}
+		*/
 		public function selectAllComments()
 		{
 			try
