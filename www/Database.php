@@ -12,6 +12,7 @@
 		const SQL_INSERT_POST = 'INSERT INTO post(title, message, author, post_date, mail) VALUES(?, ?, ?, ?, ?)';
 		const SQL_UDPATE_POST = 'UPDATE post SET status = ? WHERE id = ?';
 		const SQL_SELECT_COM = 'SELECT * FROM comment WHERE fk_id_post = ? ';
+		const SQL_SELECT_ALL_COM = 'SELECT * FROM comment';
 		const SQL_DELETE_COM = 'DELETE FROM comment WHERE id = ?';
 		const SQL_INSERT_COM = 'INSERT INTO comment(com_text, author, fk_id_post) VALUES(?, ?, ?)';
 		
@@ -142,6 +143,20 @@
 				$query = $this->bdd->prepare(Database::SQL_SELECT_COM); // Prepare the query 
 				$query->execute(array($fk_id_post)); // execute the query  
 				return $query; // return the result of the query 
+			}
+			catch(Exception $e)
+			{
+				throw $e; // throw an exception
+				return "Un erreur s'est produite, veuillez réessayer plus tard"; // return an information message
+			}
+		}
+		public function selectAllComments()
+		{
+			try
+			{
+				$request = $this->bdd->prepare(Database::SQL_SELECT_ALL_COM); // Prepare the query 
+				$request->execute(); // execute the query  
+				return $request; // return the result of the query 
 			}
 			catch(Exception $e)
 			{
