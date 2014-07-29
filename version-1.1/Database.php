@@ -8,13 +8,17 @@
 		private	$dbpassword = '';
 
 		// SQL QUERIES AS CONSTANTS
-		const SQL_SELECT_POST_BY_STATUS = 'SELECT * FROM post WHERE status = ? ORDER BY post_date DESC';
+	//	const SQL_SELECT_POST_BY_ID = 'SELECT * FROM post WHERE id = ?';
+		const SQL_SELECT_POST_BY_ID = 'SELECT p.id, p.title, p.message, p.author, p.post_date, p.mail, count(*) as nbComment FROM post AS p LEFT OUTER JOIN comment AS c ON c.fk_id_post = p.id WHERE p.id = ? GROUP BY p.title, p.message';
+	//  const SQL_SELECT_POST_BY_STATUS = 'SELECT * FROM post WHERE status = ? ORDER BY post_date DESC';
+		const SQL_SELECT_POST_BY_STATUS = 'SELECT p.id, p.title, p.message, p.author, p.post_date, p.mail, count(*) as nbComment FROM post AS p LEFT OUTER JOIN comment AS c ON c.fk_id_post = p.id WHERE p.status = ? GROUP BY p.id, p.title, p.message';
 		const SQL_INSERT_POST = 'INSERT INTO post(title, message, author, post_date, mail) VALUES(?, ?, ?, ?, ?)';
 		const SQL_UDPATE_POST = 'UPDATE post SET status = ? WHERE id = ?';
 		const SQL_SELECT_COM = 'SELECT * FROM comment WHERE fk_id_post = ? ';
 		const SQL_SELECT_ALL_COM = 'SELECT * FROM comment';
 		const SQL_DELETE_COM = 'DELETE FROM comment WHERE id = ?';
 		const SQL_INSERT_COM = 'INSERT INTO comment(com_text, author, fk_id_post) VALUES(?, ?, ?)';
+		const SQL_SELECT_COUNT_COM = 'SELECT COUNT(*) FROM comment WHERE fk_id_post = ?'; 
 		
 
 		/**
@@ -33,6 +37,19 @@
 			}
 		}
 
+		public function selectMessageById($id){
+
+			try
+			{
+				$query = $this->bdd->prepare(Database::SQL_SELECT_POST_BY_ID); // Prepare the query 
+				$query->execute(array($id)); // execute the query 
+				return $query; // return the result of teh query
+			}
+			catch(Exception $e) // catch the exception
+			{
+				throw $e; // throw an exception
+			}
+		}
 		/**
 		* Function to select messages by their status 
 		* @param $status INT 
@@ -149,6 +166,12 @@
 				throw $e; // throw an exception
 				return "Un erreur s'est produite, veuillez réessayer plus tard"; // return an information message
 			}
+		}
+		public function selectCountComments($fk_id_post)
+		{
+			$query = $this->bdd->prepare(Database::SQl_SELECT_COUNT_COM); // Prepare the query
+			$query->execute(array($fk_id_post));
+			return $query;
 		}
 		/**
 		* Function to select all the comments

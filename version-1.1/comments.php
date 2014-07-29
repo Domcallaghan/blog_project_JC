@@ -39,7 +39,7 @@
 		*/
 		public function showMessage()
 		{
-			return "<div class=\"post\">".$this->_text."</br>".$this->_author."</br></br></div>";
+			return "<div class=\"post_comment\">".$this->_text."</br>".$this->_author."</br></br></div>";
 		}
 		/**
 		* Function to check if a comment is correct or not
@@ -59,7 +59,7 @@
 
 		public function showAdminMessage() 
 		{
-			return "<div class=\"post\">".$this->_text."</br>".$this->_author." <br /> -- ID -- :".$this->_id." 
+			return "<div class=\"post_comment\">".$this->_text."</br>".$this->_author." <br /> -- ID -- :".$this->_id." 
 			<form method='POST' action='Treatment_admin_confirm_comment.php'><input type='hidden' name='id_to_delete' value=".$this->_id.">
 			<input type='submit' name='Supprimer' value='Supprimer' /></form></br></br></div>";
 		}
