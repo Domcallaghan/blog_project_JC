@@ -1,7 +1,7 @@
 <?php
 
-	include_once("Class/Database.php");
-	include_once("Class/Post.php");
+	include_once("../Class/Database.php");
+	include_once("../Class/Post.php");
 	
 // GET THE POST DATA 
 	$post_message = $_POST['content_post']; // Get the content message
@@ -18,7 +18,7 @@
 
 if(empty($_POST['login_post']) || empty($_POST['content_post']) || empty($_POST['title_post'])) // Check if the required fields are empty 
 {
-	header('Location: index.php'); // forward to the index page
+	header('Location: ../index.php'); // forward to the index page
 	echo "An error occurs"; // show an error 
 }
 else
@@ -26,7 +26,7 @@ else
 	if($p->checkMessage()) // if message is confirmed 
 	{
 		$db->insertNewMessage($p->getTitle(), $p->getMessage(), $p->getAuthor(), $dateToday, $p->getMail()); // insert the post 
-		header('Location: index.php'); // forward to the index page
+		header('Location: ../index.php'); // forward to the index page
 	}
 }
 ?>

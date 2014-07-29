@@ -17,7 +17,7 @@
 			<?php include("Process/Process.php"); ?>
 		</div> 
 		<div id="form_post_div">
-			<form name="Add a post" method="POST" action="Process_send_post.php">
+			<form name="Add a post" method="POST" action="Process/Process_send_post.php">
 				<input type="text" name="login_post" placeholder="Login (Obligatoire)"/><br/>
 				<input type="text" name="mail_post" placeholder="Mail (facultatif)"/><br/>
 				<input type="text" name="title_post" placeholder="Titre (Obligatoire)"/><br/>

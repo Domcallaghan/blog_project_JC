@@ -19,7 +19,7 @@
 		</div> 
 
 		<div id="form_com_div">
-			<form name="Add a com" method="POST" action="Process_send_comment.php">
+			<form name="Add a com" method="POST" action="Process/Process_send_comment.php">
 				<input type="text" id="login_comment" name="author_comment" placeholder="Votre nom"><br />
 				<textarea id="textarea" name="content_post" rows="5" cols="20" placeholder="Votre commentaire (Allez commente ça me fait plaisir)"></textarea><br/>
 				<input type="hidden" name="id_com_fk" value=<?php echo $_GET['id_post']; ?>>

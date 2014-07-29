@@ -88,7 +88,7 @@
 			// TODO |-> Rajouter les pages dynamiques de traitement des likes 
 
 				return "<div class=\"post\"><span id='title_post'>".$this->_title."</span></br><span id='message_post'>".$this->_message."</span></br><span id='user_post'>".$this->_user."</span></br><span id='date_post'>".$this->_date."</span></br> Comments :".$this->_comment."
-			</br><a href=comment_index.php?id_post=".$this->_id.">Click here</a>&nbsp; <a href='addVote.php?id_post=".$this->_id."&value=".true."'>+</a>&nbsp;&nbsp;&nbsp;<a href='addVote.php?id_post=".$this->_id."&value=".false."'>-</a></div>";
+			</br><a href=comment_index.php?id_post=".$this->_id.">Click here</a>&nbsp; <a href='Process/Process_addVote.php?id_post=".$this->_id."&value=".true."'>+</a>&nbsp;&nbsp;&nbsp;<a href='Process/Process_addVote.php?id_post=".$this->_id."&value=".false."'>-</a></div>";
 			
 			
 		}
@@ -109,7 +109,7 @@
 		public function showAdminMessage()
 		{
 			//A mettre en forme
-			return "<div class=\"post\"><form method='POST' action='Treatment_admin_confirmation.php' 
+			return "<div class=\"post\"><form method='POST' action='Process/Process_admin_confirmation.php' 
 			>".$this->_title."<br /> Message : ".$this->_message."<br /> Login : ".$this->_user."<br /> id - ".$this->_id. " 
 			<input hidden name='id_post' value=".$this->_id." /><input type='checkbox' name='valid' value='1'>  <input type='submit' name='Valider' value='Ok' /></form></div>";
 		}

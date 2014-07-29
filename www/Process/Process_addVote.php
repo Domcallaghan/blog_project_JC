@@ -1,7 +1,7 @@
 <?php
 
  	// This file is for the vote functionality 
-	include_once("Class/Database.php");
+	include_once("../Class/Database.php");
 
 	$value = $_GET['value']; // The value of the vote
 	$id_post = $_GET['id_post']; // The id of the post
@@ -36,11 +36,11 @@
 			$cons++; // Add a +1 to the cons values 
 			$db->updatePostCons($cons, $id_post); // Update the cons field
 		}
-		header('Location: index.php'); // Forward to the home page
+		header('Location: ../index.php'); // Forward to the home page
 	}
 	else
 	{	
-		header('Location: index.php'); // Forward to the home page
+		header('Location: ../index.php'); // Forward to the home page
 	}
 
 ?>

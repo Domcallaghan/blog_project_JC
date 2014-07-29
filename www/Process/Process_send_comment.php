@@ -1,7 +1,7 @@
 <?php
 
-	include_once("Class/Database.php");
-	include_once("Class/Comments.php");
+	include_once("../Class/Database.php");
+	include_once("../Class/Comments.php");
 	
 // GET THE POST DATA
 	$post_author = $_POST['author_comment'];
@@ -13,7 +13,7 @@
 
 if(empty($_POST['author_comment']) || empty($_POST['content_post'])) // Check if the required fields are empty 
 {
-	header('Location: index.php'); // forward to the index page
+	header('Location: ../comment_index.php?id_post='.$post_id_com.''); // forward to the index page
 	echo "An error occurs"; // show an error 
 }
 else
@@ -21,7 +21,7 @@ else
 	if($c->checkMessage()) // if message is confirmed 
 	{
 		$db->insertNewComment($c->getText(), $c->getAuthor(), $c->getId()); // Insert the new comment
-		header('Location: index.php'); // forward to the index page
+		header('Location: ../comment_index.php?id_post='.$post_id_com.''); // forward to the index page
 	}
 }
 ?>
