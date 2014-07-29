@@ -1,8 +1,8 @@
 <?php
 
 
-	include_once("Database.php");
-	include_once("Post.php");
+	include_once("Class/Database.php");
+	include_once("Class/Post.php");
 	
 	$post_status = $_POST['valid'];
 	$post_id = $_POST['id_post'];

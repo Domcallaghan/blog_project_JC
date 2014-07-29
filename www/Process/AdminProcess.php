@@ -1,8 +1,8 @@
 <?php
 
-	include_once("Database.php");
-	include_once("Post.php");
-	include_once("comments.php");
+	include_once("Class/Database.php");
+	include_once("Class/Post.php");
+	include_once("Class/Comments.php");
 
 	$db = new Database();
 	$query =  $db->selectMessagesByStatus(0);
