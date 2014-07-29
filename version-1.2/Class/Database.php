@@ -19,7 +19,15 @@
 		const SQL_DELETE_COM = 'DELETE FROM comment WHERE id = ?';
 		const SQL_INSERT_COM = 'INSERT INTO comment(com_text, author, fk_id_post) VALUES(?, ?, ?)';
 		const SQL_SELECT_COUNT_COM = 'SELECT COUNT(*) FROM comment WHERE fk_id_post = ?'; 
-		
+		const SQL_SELECT_USER = 'SELECT user_ip, id FROM user WHERE user_ip = ?';
+		const SQL_INSERT_USER = 'INSERT INTO user(user_ip) VALUES(?)';
+	//	const SQL_SELECT_USER_POST = 'SELECT asp.fk_id_post, asp.fk_id_user, u.user_ip FROM asso_user_post as asp LEFT OUTER JOIN user as u ON u.id = asp.fk_id_user WHERE asp.fk_id_post = ? AND asp.fk_id_user = ?';
+		const SQL_INSERT_ASSO_USER_POST = 'INSERT INTO asso_user_post(fk_id_post, fk_id_user) VALUES(?,?)';
+		const SQL_UPDATE_POST_PROS = 'UPDATE post SET pros = ? WHERE id = ?';
+		const SQL_UPDATE_POST_CONS = 'UPDATE post SET cons = ? WHERE id = ?';
+		const SQL_SELECT_POST_PROS_CONS = 'SELECT pros, cons FROM post WHERE id = ?';
+		const SQL_SELECT_USER_POST = 'SELECT fk_id_post, user_ip FROM user, asso_user_post WHERE fk_id_user = id AND user_ip = ? AND fk_id_post = ?';
+		// TODO |-> ADD SQL QUERIES FOR THE USER AND FOR THE LIKES 
 
 		/**
 		* Constructor function to initialize the pdo connection line
@@ -151,6 +159,7 @@
 
 		/**
 		* Function to select all the comments
+		* @param $fk_id_post INT
 		* @return {Query}
 		*/
 		public function selectComment($fk_id_post)
@@ -167,6 +176,11 @@
 				return "Un erreur s'est produite, veuillez réessayer plus tard"; // return an information message
 			}
 		}
+		/**
+		* Function to select the count comments
+		* @param $fk_id_post INT
+		* @return 
+		*/
 		public function selectCountComments($fk_id_post)
 		{
 			$query = $this->bdd->prepare(Database::SQl_SELECT_COUNT_COM); // Prepare the query
@@ -184,6 +198,136 @@
 				$request = $this->bdd->prepare(Database::SQL_SELECT_ALL_COM); // Prepare the query 
 				$request->execute(); // execute the query  
 				return $request; // return the result of the query 
+			}
+			catch(Exception $e)
+			{
+				throw $e; // throw an exception
+				return "Un erreur s'est produite, veuillez réessayer plus tard"; // return an information message
+			}
+		}
+		/**
+		* Function to select a user by his IP
+		* @param $ip VARCHAR
+		* @return {Query}
+		*/
+		public function selectUserByIp($ip)
+		{
+			try
+			{
+				$query = $this->bdd->prepare(Database::SQL_SELECT_USER); // Prepare the query
+				$query->execute(array($ip)); // execute the query
+				return $query;
+			}
+			catch(Exception $e)
+			{
+				throw $e; // throw an exception
+				return "Un erreur s'est produite, veuillez réessayer plus tard"; // return an information message
+			}
+		
+		}
+		/**
+		* Function to insert a new user
+		* @param $ip_user VARCHAR
+		*/
+		public function insertNewUser($ip_user)
+		{
+			try
+			{
+				$query = $this->bdd->prepare(Database::SQL_INSERT_USER); // Prepare the query
+				$query->execute(array($ip_user));
+			}
+			catch(Exception $e)
+			{
+				throw $e; // throw an exception
+				return "Un erreur s'est produite, veuillez réessayer plus tard"; // return an information message
+			}
+		}
+		/**
+		* Function to select user and post
+		* @param $user_adress VARCHAR
+		* @param $post INT
+		* @return {Query}
+		*/
+		public function selectUserAndPost($user_adress, $post)
+		{
+			try
+			{
+				$query = $this->bdd->prepare(Database::SQL_SELECT_USER_POST); // Prepare the query
+				$query->execute(array($user_adress, $post));
+				return $query;
+			}
+			catch(Exception $e)
+			{
+				throw $e; // throw an exception
+				return "Un erreur s'est produite, veuillez réessayer plus tard"; // return an information message
+			}
+		}
+		/**
+		* Function to insert a new user and post
+		* @param $id_user INT
+		* @param $id_post INT
+		*/
+		public function insertNewUserAndPost($id_user, $id_post)
+		{
+			try
+			{
+				$query = $this->bdd->prepare(Database::SQL_INSERT_ASSO_USER_POST); // Prepare the query
+				$query->execute(array($id_post, $id_user));
+			}
+			catch(Exception $e)
+			{
+				throw $e; // throw an exception
+				return "Un erreur s'est produite, veuillez réessayer plus tard"; // return an information message
+			}
+		}
+		/**
+		* Function to update the post pros
+		* @param $newValue INT
+		* @param $id INT
+		*/
+		public function updatePostPros($newValue, $id)
+		{
+			try
+			{
+				$query = $this->bdd->prepare(Database::SQL_UPDATE_POST_PROS); // Prepare the query
+				$query->execute(array($newValue, $id));
+			}
+			catch(Exception $e)
+			{
+				throw $e; // throw an exception
+				return "Un erreur s'est produite, veuillez réessayer plus tard"; // return an information message
+			}
+		}
+		/**
+		* Function to update the post cons
+		* @param $newValue INT
+		* @param $id INT
+		*/
+		public function updatePostCons($newValue, $id)
+		{
+			try
+			{
+				$query = $this->bdd->prepare(Database::SQL_UPDATE_POST_CONS); // Prepare the query
+				$query->execute(array($newValue, $id));
+			}
+			catch(Exception $e)
+			{
+				throw $e; // throw an exception
+				return "Un erreur s'est produite, veuillez réessayer plus tard"; // return an information message
+			}
+		}
+		/**
+		* Function to select post pros and cons
+		* @param $id_post INT
+		* @return {Query}
+		*/
+		public function selectPostProsAndCons($id_post)
+		{
+			try
+			{
+				$query = $this->bdd->prepare(Database::SQL_SELECT_POST_PROS_CONS); // Prepare the query
+				$query->execute(array($id_post));
+				return $query;
 			}
 			catch(Exception $e)
 			{

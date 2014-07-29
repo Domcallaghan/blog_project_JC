@@ -85,16 +85,11 @@
 		*/
 		public function showMessage()
 		{
-		/*	if($this->_comment >= 2)
-			{*/
+			// TODO |-> Rajouter les pages dynamiques de traitement des likes 
+
 				return "<div class=\"post\"><span id='title_post'>".$this->_title."</span></br><span id='message_post'>".$this->_message."</span></br><span id='user_post'>".$this->_user."</span></br><span id='date_post'>".$this->_date."</span></br> Comments :".$this->_comment."
-			</br><a href=comment_index.php?id_post=".$this->_id.">Click here</a>&nbsp; <a href='#'>+</a>&nbsp;&nbsp;&nbsp;<a href='#'>-</a></div>";
-			/*}*/
-			/*else
-			{
-				return "<div class=\"post\"><span id='title_post'>".$this->_title."</span></br><span id='message_post'>".$this->_message."</span></br><span id='user_post'>".$this->_user."</span></br><span id='date_post'>".$this->_date."</span></br> 
-			</br><a href=comment_index.php?id_post=".$this->_id.">Click here</a></div>";
-			}*/
+			</br><a href=comment_index.php?id_post=".$this->_id.">Click here</a>&nbsp; <a href='addVote.php?id_post=".$this->_id."&value=".true."'>+</a>&nbsp;&nbsp;&nbsp;<a href='addVote.php?id_post=".$this->_id."&value=".false."'>-</a></div>";
+			
 			
 		}
 		
@@ -107,7 +102,10 @@
 		{	
 			$this->_status = $newStatus; 
 		}
-
+		/**
+		* Function to show message for the admin 
+		* @return {string}
+		*/
 		public function showAdminMessage()
 		{
 			//A mettre en forme
@@ -115,6 +113,10 @@
 			>".$this->_title."<br /> Message : ".$this->_message."<br /> Login : ".$this->_user."<br /> id - ".$this->_id. " 
 			<input hidden name='id_post' value=".$this->_id." /><input type='checkbox' name='valid' value='1'>  <input type='submit' name='Valider' value='Ok' /></form></div>";
 		}
+		/**
+		* Function to show message for the comment 
+		* @return {string}
+		*/
 		public function showOnlyMessageComment()
 		{
 			return "<div class=\"post\">".$this->_title."</br>".$this->_message."</br>".$this->_user."</br>".$this->_date."</br>

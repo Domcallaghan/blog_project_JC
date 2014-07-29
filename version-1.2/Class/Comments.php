@@ -56,7 +56,10 @@
 				return false;
 			}
 		}
-
+		/**
+		* Function to show message for the admin 
+		* @return {string}
+		*/
 		public function showAdminMessage() 
 		{
 			return "<div class=\"post_comment\">".$this->_text."</br>".$this->_author." <br /> -- ID -- :".$this->_id." 

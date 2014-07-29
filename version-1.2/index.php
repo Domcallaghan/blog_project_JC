@@ -4,11 +4,7 @@
 		<meta charset="utf-8">
 		<title>Post and comment</title>
 		<link rel="stylesheet" type="text/css" href="css/index.css">
-		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-
 		<link href="css/bootstrap.min.css" rel="stylesheet">
-		<link href="css/blog-post.css" rel="stylesheet">
 
 	</head>
 
@@ -17,10 +13,11 @@
 		<h1>Bienvenue sur notre blog :)</h1></br>
 		<div class="blog">
 
-			<?php include("Treatment.php"); ?>
+			<?php include_once("Process/Process_checkUser.php"); ?>
+			<?php include("Process/Process.php"); ?>
 		</div> 
 		<div id="form_post_div">
-			<form name="Add a post" method="POST" action="Treatment_send_post.php">
+			<form name="Add a post" method="POST" action="Process_send_post.php">
 				<input type="text" name="login_post" placeholder="Login (Obligatoire)"/><br/>
 				<input type="text" name="mail_post" placeholder="Mail (facultatif)"/><br/>
 				<input type="text" name="title_post" placeholder="Titre (Obligatoire)"/><br/>

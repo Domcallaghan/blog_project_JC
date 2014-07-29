@@ -1,7 +1,7 @@
 <?php
 
-	include_once("Database.php");
-	include_once("Post.php");
+	include_once("Class/Database.php");
+	include_once("Class/Post.php");
 	
 // GET THE POST DATA 
 	$post_message = $_POST['content_post']; // Get the content message

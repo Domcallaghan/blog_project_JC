@@ -1,7 +1,7 @@
 <?php
 
-	include_once("Database.php");
-	include_once("Post.php");
+	include_once("Class/Database.php");
+	include_once("Class/Post.php");
 	
 	$db = new Database();
 	$null = 0;
