@@ -11,6 +11,13 @@ h1
 {
 	resize: none;
 }
+#form_com_div
+{
+	text-align: center;
+	margin: auto;
+	width: 75%;
+	border: 1px solid blue; 
+}
 #form_post_div
 {
 	text-align: center;

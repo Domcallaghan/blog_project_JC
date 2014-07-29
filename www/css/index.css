@@ -11,25 +11,50 @@ h1
 {
 	resize: none;
 }
+#form_com_div
+{
+	text-align: center;
+	margin: auto;
+	width: 75%;
+	border: 1px solid blue; 
+}
 #form_post_div
 {
 	text-align: center;
-	margin: left;
-	width: 25%;
-
+	margin: auto;
+	width: 75%;
 	border: 1px solid blue; 
 }
 
 .blog
 { 
-	 text-align:center;
-	 margin: auto;
-	 width: 25%;
+	margin: auto;
+	text-align:center;
+	width: 75%;
 }
 
 .post
 {
-	 border-width:1px;
-	 border-style:solid;
-	 border-color:black;
+	padding-bottom: 10px;
+	margin-bottom: 20px;
+	border-width:1px;
+	border-style:solid;
+	border-color:black; 
+}
+#title_post
+{
+	font-size: 1.2em;
+	font-weight: bold;
+}
+#message_post
+{
+
+}
+#user_post
+{
+
+}
+#date_post
+{
+
 }

@@ -9,6 +9,7 @@
 		private $_id;
 		private $_status;
 		private $_mail;
+		private $_comment;
 		
 		/**
 		* A post of a user.
@@ -19,7 +20,7 @@
 		* @param $post_date {date} The date of the post
 		* @param $post_mail {string} The mail of the user
 		*/
-		public function __construct($post_message, $post_user, $post_title, $post_date, $post_mail, $post_id)
+		public function __construct($post_message, $post_user, $post_title, $post_date, $post_mail, $post_id, $post_comment)
 		{
 			// Secure the post with the htmlspecialchars.
 			$this->_message = htmlspecialchars($post_message);
@@ -36,6 +37,7 @@
 			{
 				$this->_mail = htmlspecialchars($post_mail);
 			}
+			$this->_comment = $post_comment;
 		}
 
 		// GETTERS
@@ -55,7 +57,10 @@
 		{
 			return $this->_mail;
 		}
-		
+		public function getCount()
+		{
+			return $this->_comment;
+		}
 		/**
 		* Check the size of the message.
 		* @method Post.checkMessage
@@ -80,8 +85,17 @@
 		*/
 		public function showMessage()
 		{
-			return "<div class=\"post\">".$this->_title."</br>".$this->_message."</br>".$this->_user."</br>".$this->_date."</br>
+		/*	if($this->_comment >= 2)
+			{*/
+				return "<div class=\"post\"><span id='title_post'>".$this->_title."</span></br><span id='message_post'>".$this->_message."</span></br><span id='user_post'>".$this->_user."</span></br><span id='date_post'>".$this->_date."</span></br> Comments :".$this->_comment."
+			</br><a href=comment_index.php?id_post=".$this->_id.">Click here</a>&nbsp; <a href='#'>+</a>&nbsp;&nbsp;&nbsp;<a href='#'>-</a></div>";
+			/*}*/
+			/*else
+			{
+				return "<div class=\"post\"><span id='title_post'>".$this->_title."</span></br><span id='message_post'>".$this->_message."</span></br><span id='user_post'>".$this->_user."</span></br><span id='date_post'>".$this->_date."</span></br> 
 			</br><a href=comment_index.php?id_post=".$this->_id.">Click here</a></div>";
+			}*/
+			
 		}
 		
 		/**
@@ -101,6 +115,11 @@
 			>".$this->_title."<br /> Message : ".$this->_message."<br /> Login : ".$this->_user."<br /> id - ".$this->_id. " 
 			<input hidden name='id_post' value=".$this->_id." /><input type='checkbox' name='valid' value='1'>  <input type='submit' name='Valider' value='Ok' /></form></div>";
 		}
-
+		public function showOnlyMessageComment()
+		{
+			return "<div class=\"post\">".$this->_title."</br>".$this->_message."</br>".$this->_user."</br>".$this->_date."</br>
+			</br></div>";
+		}
+		
 	}
 ?>

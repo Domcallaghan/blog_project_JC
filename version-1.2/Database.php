@@ -9,9 +9,9 @@
 
 		// SQL QUERIES AS CONSTANTS
 	//	const SQL_SELECT_POST_BY_ID = 'SELECT * FROM post WHERE id = ?';
-		const SQL_SELECT_POST_BY_ID = 'SELECT p.id, p.title, p.message, p.author, p.post_date, p.mail, count(*) as nbComment FROM post AS p LEFT OUTER JOIN comment AS c ON c.fk_id_post = p.id WHERE p.id = ? GROUP BY p.title, p.message';
+		const SQL_SELECT_POST_BY_ID = 'SELECT p.id, p.title, p.message, p.author, p.post_date, p.mail, c.fk_id_post, count(*) as nbComment FROM post AS p LEFT OUTER JOIN comment AS c ON c.fk_id_post = p.id WHERE p.id = ? GROUP BY p.title, p.message';
 	//  const SQL_SELECT_POST_BY_STATUS = 'SELECT * FROM post WHERE status = ? ORDER BY post_date DESC';
-		const SQL_SELECT_POST_BY_STATUS = 'SELECT p.id, p.title, p.message, p.author, p.post_date, p.mail, count(*) as nbComment FROM post AS p LEFT OUTER JOIN comment AS c ON c.fk_id_post = p.id WHERE p.status = ? GROUP BY p.id, p.title, p.message';
+		const SQL_SELECT_POST_BY_STATUS = 'SELECT p.id, p.title, p.message, p.author, p.post_date, p.mail, c.fk_id_post as isCommented, count(*) as nbComment FROM post AS p LEFT OUTER JOIN comment AS c ON c.fk_id_post = p.id WHERE p.status = ? GROUP BY p.id, p.title, p.message';
 		const SQL_INSERT_POST = 'INSERT INTO post(title, message, author, post_date, mail) VALUES(?, ?, ?, ?, ?)';
 		const SQL_UDPATE_POST = 'UPDATE post SET status = ? WHERE id = ?';
 		const SQL_SELECT_COM = 'SELECT * FROM comment WHERE fk_id_post = ? ';

@@ -9,11 +9,12 @@
 	$post_title = $_POST['title_post']; // Get the title
 	$post_mail = $_POST['mail_post']; // Get the mail 
 	$post_id = $_POST['id']; // Get the id
+	$post_comment = 0;
 
 // CHECK IF THE DATA EXISTS
 	$dateToday = date('Y-m-d'); // Get the actual date 
 	$db = new Database(); // Create the database object 
-	$p = new Post($post_message, $post_user, $post_title, $dateToday, $post_mail, $post_id); // Create the post object with datas
+	$p = new Post($post_message, $post_user, $post_title, $dateToday, $post_mail, $post_id, $post_comment); // Create the post object with datas
 
 if(empty($_POST['login_post']) || empty($_POST['content_post']) || empty($_POST['title_post'])) // Check if the required fields are empty 
 {

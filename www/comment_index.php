@@ -12,6 +12,7 @@
 		<div class="blog">
 
 			<?php 
+			include("Treatment_onlyPost.php");
 			include("Treatment_comment.php"); 
 			?>
 		</div> 
