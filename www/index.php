@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+<html>
 
 	<body id="body_bg">
 		
@@ -18,13 +18,12 @@
 				<input type="submit" name="Send" value="Poster">
 			</form>
 		</div>
-		
-		<!-- jQuery Version 1.11.0 -->
-		<script src="js/jquery-1.11.1.js"></script>
+        <?php include_once("footer.php"); ?>
 
 		<!-- Bootstrap Core JavaScript -->
+        <script type="text/javascript" src="js/index.js"></script>
 		<script src="js/bootstrap.min.js"></script>
-	
+
 	</body>
 
 

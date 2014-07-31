@@ -170,8 +170,8 @@
                 return "<div class=\"post\"><span id='title_post'>".$this->_title."</span></br><span id='message_post'>".$this->_message."</span></br><span id='user_post'>".$this->_user."
 				</span></br><span id='date_post'>".$this->_date."</span>
                 </br><a href=comment_index.php?id_post=".$this->_id.">You want to comment ? (".$this->_comment.")</a>
-                &nbsp; <a href='Process/Process_addVote.php?id_post=".$this->_id."&value=".true."'>
-                You like (".$this->_pros.")</a>&nbsp;&nbsp;&nbsp;<a href='Process/Process_addVote.php?id_post=".$this->_id."&value=".false."'>You don't like (".$this->_cons.")</a></div>";
+                &nbsp; <a id='".$this->_id."' class='posLink ".$this->_id."' href='Process/Process_addVote.php?id_post=".$this->_id."&value=".true."'>
+                You like (".$this->_pros.")</a>&nbsp;&nbsp;&nbsp;<a id='n".$this->_id."' class='negLink ".$this->_id."' href='Process/Process_addVote.php?id_post=".$this->_id."&value=".false."'>You don't like (".$this->_cons.")</a></div>";
 
 		}
 

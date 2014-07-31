@@ -39,7 +39,7 @@
                 $this->_author = htmlspecialchars($com_author);
                 $this->_id = htmlspecialchars($com_id);
         }
-            // GETTERS
+         // GETTERS
         /**
          *
          * @method Comment#getAuthor
