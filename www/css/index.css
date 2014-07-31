@@ -1,3 +1,7 @@
+#body_bg
+{
+    background-color: ghostwhite;
+}
 h1
 {
 	text-align: center;
@@ -36,10 +40,11 @@ h1
 {
 	padding-bottom: 10px;
 	margin-bottom: 20px;
-	border-width:1px;
+	border-width:2px;
 	border-style:solid;
-	border-color:black; 
+	border-color:black;
 	box-shadow: 5px 5px grey;
+    background-color: #ffffff;
 }
 .post_comment
 {
@@ -55,15 +60,10 @@ h1
 	font-size: 1.2em;
 	font-weight: bold;
 }
-#message_post
+#body_title
 {
-
-}
-#user_post
-{
-
-}
-#date_post
-{
-
+    margin: auto;
+    text-align: center;
+    width: 75%;
+    margin-bottom: 50px;
 }

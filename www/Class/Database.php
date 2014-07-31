@@ -1,19 +1,42 @@
 <?php
-	class Database {
+
+    /**
+     * @class Database
+     * Class Database
+     */
+    class Database {
 
 		// Connection values for the db
-		private $bdd;
-		private $dbname = 'vdm_project';
-		private $dblogin = 'root';
-		private	$dbpassword = '';
+        /**
+         *
+         * @member Database#bdd
+         * @var PDO
+         */
+        private $bdd;
+        /**
+         *
+         * @member Database#dbname
+         * @var string
+         */
+        private $dbname = 'vdm_project';
+        /**
+         *
+         * @member Database#dblogin
+         * @var string
+         */
+        private $dblogin = 'root';
+        /**
+         *
+         * @member Database#dbpassword
+         * @var string
+         */
+        private	$dbpassword = '';
 
 		// SQL QUERIES AS CONSTANTS
-	//	const SQL_SELECT_POST_BY_ID = 'SELECT * FROM post WHERE id = ?';
-		const SQL_SELECT_POST_BY_ID = 'SELECT p.id, p.title, p.message, p.author, p.post_date, p.mail, c.fk_id_post, count(*) as nbComment FROM post AS p LEFT OUTER JOIN comment AS c ON c.fk_id_post = p.id WHERE p.id = ? GROUP BY p.title, p.message';
-	//  const SQL_SELECT_POST_BY_STATUS = 'SELECT * FROM post WHERE status = ? ORDER BY post_date DESC';
+        const SQL_SELECT_POST_BY_ID = 'SELECT p.id, p.title, p.message, p.author, p.post_date, p.mail, c.fk_id_post, count(*) as nbComment FROM post AS p LEFT OUTER JOIN comment AS c ON c.fk_id_post = p.id WHERE p.id = ? GROUP BY p.title, p.message';
 		const SQL_SELECT_POST_BY_STATUS = 'SELECT p.id, p.title, p.message, p.author, p.post_date, p.mail, c.fk_id_post as isCommented, count(*) as nbComment FROM post AS p LEFT OUTER JOIN comment AS c ON c.fk_id_post = p.id WHERE p.status = ? GROUP BY p.id, p.title, p.message';
 		const SQL_INSERT_POST = 'INSERT INTO post(title, message, author, post_date, mail) VALUES(?, ?, ?, ?, ?)';
-		const SQL_UDPATE_POST = 'UPDATE post SET status = ? WHERE id = ?';
+		const SQL_UPDATE_POST = 'UPDATE post SET status = ? WHERE id = ?';
 		const SQL_SELECT_COM = 'SELECT * FROM comment WHERE fk_id_post = ? ';
 		const SQL_SELECT_ALL_COM = 'SELECT * FROM comment';
 		const SQL_DELETE_COM = 'DELETE FROM comment WHERE id = ?';
@@ -21,19 +44,17 @@
 		const SQL_SELECT_COUNT_COM = 'SELECT COUNT(*) FROM comment WHERE fk_id_post = ?'; 
 		const SQL_SELECT_USER = 'SELECT user_ip, id FROM user WHERE user_ip = ?';
 		const SQL_INSERT_USER = 'INSERT INTO user(user_ip) VALUES(?)';
-	//	const SQL_SELECT_USER_POST = 'SELECT asp.fk_id_post, asp.fk_id_user, u.user_ip FROM asso_user_post as asp LEFT OUTER JOIN user as u ON u.id = asp.fk_id_user WHERE asp.fk_id_post = ? AND asp.fk_id_user = ?';
 		const SQL_INSERT_ASSO_USER_POST = 'INSERT INTO asso_user_post(fk_id_post, fk_id_user) VALUES(?,?)';
 		const SQL_UPDATE_POST_PROS = 'UPDATE post SET pros = ? WHERE id = ?';
 		const SQL_UPDATE_POST_CONS = 'UPDATE post SET cons = ? WHERE id = ?';
 		const SQL_SELECT_POST_PROS_CONS = 'SELECT pros, cons FROM post WHERE id = ?';
 		const SQL_SELECT_USER_POST = 'SELECT fk_id_post, user_ip FROM user, asso_user_post WHERE fk_id_user = id AND user_ip = ? AND fk_id_post = ?';
-		// TODO |-> ADD SQL QUERIES FOR THE USER AND FOR THE LIKES 
 
-		/**
-		* Constructor function to initialize the pdo connection line
-		* @constructor 
-		*/
-		public function __construct(){
+        /**
+         *
+         * @construct
+         */
+        public function __construct(){
 
 			try
 			{
@@ -45,7 +66,14 @@
 			}
 		}
 
-		public function selectMessageById($id){
+        /**
+         *
+         * @method Database#selectMessageById
+         * @param $id
+         * @return PDOStatement
+         * @throws Exception
+         */
+        public function selectMessageById($id){
 
 			try
 			{
@@ -58,12 +86,15 @@
 				throw $e; // throw an exception
 			}
 		}
-		/**
-		* Function to select messages by their status 
-		* @param $status INT 
-		* @return {Query}
-		*/
-		public function selectMessagesByStatus($status){
+
+        /**
+         *
+         * @method Database#selectMessagesByStatus
+         * @param $status
+         * @return PDOStatement
+         * @throws Exception
+         */
+        public function selectMessagesByStatus($status){
 
 			try 
 			{
@@ -76,15 +107,17 @@
 			}
 		}
 
-		/**
-		* Function to insert a new message in the database 
-		* @param $title VARCHAR
-		* @param $message VARCHAR (300)
-		* @param $author VARCHAR
-		* @param $post_date DATE
-		* @param $mail VARCHAR
-		*/
-		public function insertNewMessage($title, $message, $author, $post_date, $mail){
+        /**
+         *
+         * @method Database#insertNewMessage
+         * @param $title
+         * @param $message
+         * @param $author
+         * @param $post_date
+         * @param $mail
+         * @throws Exception
+         */
+        public function insertNewMessage($title, $message, $author, $post_date, $mail){
 
 			try 
 			{ 
@@ -96,35 +129,37 @@
 				throw $e;
 			}
 		}
-		
-		/**
-		* Function to update the status of a message by his status
-		* @param $status INT 
-		* @param $id_message INT 
-		* @return {string}
-		*/
-		public function updateStatusById($status, $id_message){
+
+        /**
+         *
+         * @method Database#updateStatusById
+         * @param $status
+         * @param $id_message
+         * @return string
+         * @throws Exception
+         */
+        public function updateStatusById($status, $id_message){
 			try 
 			{
-				$query = $this->bdd->prepare(Database::SQL_UDPATE_POST); // Prepare the query 
+				$query = $this->bdd->prepare(Database::SQL_UPDATE_POST); // Prepare the query
 				$query->execute(array($status, $id_message)); // execute the query 
 				return "le statut à été mis à jour"; // return an information message
 			} 
 			catch(Exception $e) 
 			{
 				throw $e; // throw an exception
-				return "Un erreur s'est produite, veuillez réessayer plus tard"; // return an information message
 			}
 		}
 
-		/**
-		* Function to insert a new comment to a post 
-		* @param $author VARCHAR 
-		* @param $message VARCHAR (500) 
-		* @param $id_post INT 
-		* @return {string}
-		*/
-		public function insertNewComment($author, $message, $id_post)
+        /**
+         *
+         * @method Database#insertNewComment
+         * @param $author
+         * @param $message
+         * @param $id_post
+         * @throws Exception
+         */
+        public function insertNewComment($author, $message, $id_post)
 		{
 			try
 			{
@@ -134,16 +169,16 @@
 			catch(Exception $e)
 			{
 				throw $e; // throw an exception
-				return "Un erreur s'est produite, veuillez réessayer plus tard"; // return an information message
 			}
 		}
 
-		/**
-		* Function to delete a existing comment
-		* @param $id_com INT 
-		* @return {string}
-		*/
-		public function deleteComment($id_com)
+        /**
+         *
+         * @method Database#deleteComment
+         * @param $id_com
+         * @throws Exception
+         */
+        public function deleteComment($id_com)
 		{
 			try
 			{
@@ -153,16 +188,17 @@
 			catch(Exception $e)
 			{
 				throw $e; // throw an exception
-				return "Un erreur s'est produite, veuillez réessayer plus tard"; // return an information message
 			}
 		}
 
-		/**
-		* Function to select all the comments
-		* @param $fk_id_post INT
-		* @return {Query}
-		*/
-		public function selectComment($fk_id_post)
+        /**
+         *
+         * @method Database#selectComment
+         * @param $fk_id_post
+         * @return PDOStatement
+         * @throws Exception
+         */
+        public function selectComment($fk_id_post)
 		{
 			try
 			{
@@ -173,25 +209,29 @@
 			catch(Exception $e)
 			{
 				throw $e; // throw an exception
-				return "Un erreur s'est produite, veuillez réessayer plus tard"; // return an information message
 			}
 		}
-		/**
-		* Function to select the count comments
-		* @param $fk_id_post INT
-		* @return 
-		*/
-		public function selectCountComments($fk_id_post)
+
+        /**
+         *
+         * @method Database#selectCountComments
+         * @param $fk_id_post
+         * @return PDOStatement
+         */
+        public function selectCountComments($fk_id_post)
 		{
-			$query = $this->bdd->prepare(Database::SQl_SELECT_COUNT_COM); // Prepare the query
+			$query = $this->bdd->prepare(Database::SQL_SELECT_COUNT_COM); // Prepare the query
 			$query->execute(array($fk_id_post));
 			return $query;
 		}
-		/**
-		* Function to select all the comments
-		* @return {Query}
-		*/
-		public function selectAllComments()
+
+        /**
+         *
+         * @method Database#selectAllComments
+         * @return PDOStatement
+         * @throws Exception
+         */
+        public function selectAllComments()
 		{
 			try
 			{
@@ -202,15 +242,17 @@
 			catch(Exception $e)
 			{
 				throw $e; // throw an exception
-				return "Un erreur s'est produite, veuillez réessayer plus tard"; // return an information message
 			}
 		}
-		/**
-		* Function to select a user by his IP
-		* @param $ip VARCHAR
-		* @return {Query}
-		*/
-		public function selectUserByIp($ip)
+
+        /**
+         *
+         * @method Database#selectUserByIp
+         * @param $ip
+         * @return PDOStatement
+         * @throws Exception
+         */
+        public function selectUserByIp($ip)
 		{
 			try
 			{
@@ -221,15 +263,17 @@
 			catch(Exception $e)
 			{
 				throw $e; // throw an exception
-				return "Un erreur s'est produite, veuillez réessayer plus tard"; // return an information message
 			}
 		
 		}
-		/**
-		* Function to insert a new user
-		* @param $ip_user VARCHAR
-		*/
-		public function insertNewUser($ip_user)
+
+        /**
+         *
+         * @method Database#insertNewUser
+         * @param $ip_user
+         * @throws Exception
+         */
+        public function insertNewUser($ip_user)
 		{
 			try
 			{
@@ -239,16 +283,18 @@
 			catch(Exception $e)
 			{
 				throw $e; // throw an exception
-				return "Un erreur s'est produite, veuillez réessayer plus tard"; // return an information message
 			}
 		}
-		/**
-		* Function to select user and post
-		* @param $user_adress VARCHAR
-		* @param $post INT
-		* @return {Query}
-		*/
-		public function selectUserAndPost($user_adress, $post)
+
+        /**
+         *
+         * @method Database#selectUserAndPost
+         * @param $user_adress
+         * @param $post
+         * @return PDOStatement
+         * @throws Exception
+         */
+        public function selectUserAndPost($user_adress, $post)
 		{
 			try
 			{
@@ -259,15 +305,17 @@
 			catch(Exception $e)
 			{
 				throw $e; // throw an exception
-				return "Un erreur s'est produite, veuillez réessayer plus tard"; // return an information message
 			}
 		}
-		/**
-		* Function to insert a new user and post
-		* @param $id_user INT
-		* @param $id_post INT
-		*/
-		public function insertNewUserAndPost($id_user, $id_post)
+
+        /**
+         *
+         * @method Database#insertNewUserAndPost
+         * @param $id_user
+         * @param $id_post
+         * @throws Exception
+         */
+        public function insertNewUserAndPost($id_user, $id_post)
 		{
 			try
 			{
@@ -277,15 +325,17 @@
 			catch(Exception $e)
 			{
 				throw $e; // throw an exception
-				return "Un erreur s'est produite, veuillez réessayer plus tard"; // return an information message
 			}
 		}
-		/**
-		* Function to update the post pros
-		* @param $newValue INT
-		* @param $id INT
-		*/
-		public function updatePostPros($newValue, $id)
+
+        /**
+         *
+         * @method Database#updatePostPros
+         * @param $newValue
+         * @param $id
+         * @throws Exception
+         */
+        public function updatePostPros($newValue, $id)
 		{
 			try
 			{
@@ -295,15 +345,17 @@
 			catch(Exception $e)
 			{
 				throw $e; // throw an exception
-				return "Un erreur s'est produite, veuillez réessayer plus tard"; // return an information message
 			}
 		}
-		/**
-		* Function to update the post cons
-		* @param $newValue INT
-		* @param $id INT
-		*/
-		public function updatePostCons($newValue, $id)
+
+        /**
+         *
+         * @method Database#updatePostCons
+         * @param $newValue
+         * @param $id
+         * @throws Exception
+         */
+        public function updatePostCons($newValue, $id)
 		{
 			try
 			{
@@ -313,15 +365,17 @@
 			catch(Exception $e)
 			{
 				throw $e; // throw an exception
-				return "Un erreur s'est produite, veuillez réessayer plus tard"; // return an information message
 			}
 		}
-		/**
-		* Function to select post pros and cons
-		* @param $id_post INT
-		* @return {Query}
-		*/
-		public function selectPostProsAndCons($id_post)
+
+        /**
+         *
+         * @method Database#selectPostProsAndCons
+         * @param $id_post
+         * @return PDOStatement
+         * @throws Exception
+         */
+        public function selectPostProsAndCons($id_post)
 		{
 			try
 			{
@@ -332,7 +386,6 @@
 			catch(Exception $e)
 			{
 				throw $e; // throw an exception
-				return "Un erreur s'est produite, veuillez réessayer plus tard"; // return an information message
 			}
 		}
 	}	

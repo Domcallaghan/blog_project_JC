@@ -1,20 +1,13 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title>Post and comment</title>
-		<link rel="stylesheet" type="text/css" href="css/index.css">
-		<link href="css/bootstrap.min.css" rel="stylesheet">
 
-	</head>
 
-	<body>
+	<body id="body_bg">
 		
-		<h1>Bienvenue sur notre blog :)</h1></br>
+		<?php include("header.php") ?>
 		<div class="blog">
 
 			<?php include_once("Process/Process_checkUser.php"); ?>
-			<?php include("Process/Process.php"); ?>
+			<?php include_once("Process/Process.php"); ?>
 		</div> 
 		<div id="form_post_div">
 			<form name="Add a post" method="POST" action="Process/Process_send_post.php">

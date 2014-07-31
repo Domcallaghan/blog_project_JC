@@ -1,26 +1,72 @@
 <?php
-	
-	class Post {
-		
-		private $_message;
-		private $_user;
-		private $_date;
-		private $_title;
-		private $_id;
-		private $_status;
-		private $_mail;
-		private $_comment;
-		
-		/**
-		* A post of a user.
-		* @class Post
-		* @param $post_message {string} The message of the post
-		* @param $post_user {string} The user who has write the post
-		* @param $post_title {string} The title of the message
-		* @param $post_date {date} The date of the post
-		* @param $post_mail {string} The mail of the user
-		*/
-		public function __construct($post_message, $post_user, $post_title, $post_date, $post_mail, $post_id, $post_comment)
+
+    /**
+     *
+     * @class Post
+     * Class Post
+     */
+    class Post {
+        /**
+         *
+         * @member Post#_message
+         * @var string
+         */
+        private $_message;
+        /**
+         *
+         * @member Post#_user
+         * @var string
+         */
+        private $_user;
+        /**
+         *
+         * @member Post#_date
+         * @var date
+         */
+        private $_date;
+        /**
+         *
+         * @member Post#_title
+         * @var string
+         */
+        private $_title;
+        /**
+         *
+         * @member Post#_id
+         * @var int
+         */
+        private $_id;
+        /**
+         *
+         * @member Post#_status
+         * @var int
+         */
+        private $_status;
+        /**
+         *
+         * @member Post#_mail
+         * @var string
+         */
+        private $_mail;
+        /**
+         *
+         * @member Post#_comment
+         * @var int
+         */
+        private $_comment;
+
+        /**
+         *
+         * @construct
+         * @param $post_message
+         * @param $post_user
+         * @param $post_title
+         * @param $post_date
+         * @param $post_mail
+         * @param $post_id
+         * @param $post_comment
+         */
+        public function __construct($post_message, $post_user, $post_title, $post_date, $post_mail, $post_id, $post_comment)
 		{
 			// Secure the post with the htmlspecialchars.
 			$this->_message = htmlspecialchars($post_message);
@@ -41,32 +87,62 @@
 		}
 
 		// GETTERS
-		public function getTitle()
+        /**
+         *
+         * @method Post#getTitle
+         * @return string
+         */
+        public function getTitle()
 		{
 			return $this->_title;
 		}
-		public function getMessage()
+
+        /**
+         *
+         * @method Post#getMessage
+         * @return string
+         */
+        public function getMessage()
 		{
 			return $this->_message;
 		}
-		public function getAuthor()
+
+        /**
+         *
+         * @method Post#getAuthor
+         * @return string
+         */
+        public function getAuthor()
 		{
 			return $this->_user;
 		}
-		public function getMail()
+
+        /**
+         *
+         * @method Post#getMail
+         * @return string
+         */
+        public function getMail()
 		{
 			return $this->_mail;
 		}
-		public function getCount()
+
+        /**
+         *
+         * @method Post#getCount
+         * @return int
+         */
+        public function getCount()
 		{
 			return $this->_comment;
 		}
-		/**
-		* Check the size of the message.
-		* @method Post.checkMessage
-		* @return {boolean} Return true if the message is valid else return false.
-		*/
-		public function checkMessage()
+
+        /**
+         *
+         * @method Post#checkMessage
+         * @return bool
+         */
+        public function checkMessage()
 		{
 			if (strlen($this->_message) <= 300) 
 			{
@@ -76,14 +152,14 @@
 			{
 				return false;
 			}
-		}	
-		
-		/**
-		* Return the post in a html division.
-		* @method Post.showMessage
-		* @return {string} 
-		*/
-		public function showMessage()
+		}
+
+        /**
+         *
+         * @method Post#showMessage
+         * @return string
+         */
+        public function showMessage()
 		{
 			// TODO |-> Rajouter les pages dynamiques de traitement des likes 
 
@@ -92,32 +168,37 @@
 			
 			
 		}
-		
-		/**
-		* Change the status of the post.
-		* @method changeStatus
-		* @param {integer} $newStatus 
-		*/
-		public function changeStatus($newStatus)
+
+        /**
+         *
+         * @method Post#changeStatus
+         * @param $newStatus
+         */
+        public function changeStatus($newStatus)
 		{	
-			$this->_status = $newStatus; 
+			$this->_status = $newStatus;
 		}
-		/**
-		* Function to show message for the admin 
-		* @return {string}
-		*/
-		public function showAdminMessage()
+
+        /**
+         *
+         * @method Post#showAdminMessage
+         * @return string
+         */
+        public function showAdminMessage()
 		{
-			//A mettre en forme
+			// TODO |-> Rajouter une mise en forme correcte pour les pages
+
 			return "<div class=\"post\"><form method='POST' action='Process/Process_admin_confirmation.php' 
 			>".$this->_title."<br /> Message : ".$this->_message."<br /> Login : ".$this->_user."<br /> id - ".$this->_id. " 
 			<input hidden name='id_post' value=".$this->_id." /><input type='checkbox' name='valid' value='1'>  <input type='submit' name='Valider' value='Ok' /></form></div>";
 		}
-		/**
-		* Function to show message for the comment 
-		* @return {string}
-		*/
-		public function showOnlyMessageComment()
+
+        /**
+         *
+         * @method Post#showOnlyMessageComment
+         * @return string
+         */
+        public function showOnlyMessageComment()
 		{
 			return "<div class=\"post\">".$this->_title."</br>".$this->_message."</br>".$this->_user."</br>".$this->_date."</br>
 			</br></div>";

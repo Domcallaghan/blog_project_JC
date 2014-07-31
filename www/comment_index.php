@@ -9,7 +9,7 @@
 
 	<body>
 		
-		<h1>Bienvenue sur notre blog :)</h1></br>
+		<?php include("header.php") ?>
 		<div class="blog">
 
 			<?php 
