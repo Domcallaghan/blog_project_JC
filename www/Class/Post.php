@@ -54,6 +54,8 @@
          * @var int
          */
         private $_comment;
+        private $_pros;
+        private $_cons;
 
         /**
          *
@@ -65,8 +67,10 @@
          * @param $post_mail
          * @param $post_id
          * @param $post_comment
+         * @param $post_pros
+         * @param $post_cons
          */
-        public function __construct($post_message, $post_user, $post_title, $post_date, $post_mail, $post_id, $post_comment)
+        public function __construct($post_message, $post_user, $post_title, $post_date, $post_mail, $post_id, $post_comment, $post_pros, $post_cons)
 		{
 			// Secure the post with the htmlspecialchars.
 			$this->_message = htmlspecialchars($post_message);
@@ -74,7 +78,9 @@
 			$this->_title = htmlspecialchars($post_title);
 			$this->_id = $post_id;
 			$this->_date = $post_date;
-
+            $this->_comment = $post_comment;
+            $this->_pros = $post_pros;
+            $this->_cons = $post_cons;
 			if(empty($post_mail))
 			{
 				$this->_mail = "";
@@ -83,7 +89,7 @@
 			{
 				$this->_mail = htmlspecialchars($post_mail);
 			}
-			$this->_comment = $post_comment;
+
 		}
 
 		// GETTERS
@@ -163,10 +169,14 @@
 		{
 			// TODO |-> Rajouter les pages dynamiques de traitement des likes 
 
-				return "<div class=\"post\"><span id='title_post'>".$this->_title."</span></br><span id='message_post'>".$this->_message."</span></br><span id='user_post'>".$this->_user."</span></br><span id='date_post'>".$this->_date."</span></br> Comments :".$this->_comment."
-			</br><a href=comment_index.php?id_post=".$this->_id.">Click here</a>&nbsp; <a href='Process/Process_addVote.php?id_post=".$this->_id."&value=".true."'>+</a>&nbsp;&nbsp;&nbsp;<a href='Process/Process_addVote.php?id_post=".$this->_id."&value=".false."'>-</a></div>";
+				return "<div class=\"post\"><span id='title_post'>".$this->_title."</span></br><span id='message_post'>".$this->_message."</span></br><span id='user_post'>".$this->_user."
+				</span></br><span id='date_post'>".$this->_date."</span>
+				</br> Comments :".$this->_comment."
+			</br><a href=comment_index.php?id_post=".$this->_id.">You want to comment ?</a>
+			&nbsp; <a href='Process/Process_addVote.php?id_post=".$this->_id."&value=".true."'>
+			You like (".$this->_pros.")</a>&nbsp;&nbsp;&nbsp;<a href='Process/Process_addVote.php?id_post=".$this->_id."&value=".false."'>You don't like (".$this->_cons.")</a></div>";
 			
-			
+
 		}
 
         /**

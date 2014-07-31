@@ -13,11 +13,11 @@
 	foreach($query as $post){
 		if(is_null($post['isCommented']))
 		{
-			array_push($a, new Post($post['message'],$post['author'],$post['title'],$post['post_date'],$post['mail'],$post['id'], $null));
+			array_push($a, new Post($post['message'],$post['author'],$post['title'],$post['post_date'],$post['mail'],$post['id'], $null, $post['pros'], $post['cons']));
 		}
 		else
 		{	
-			array_push($a, new Post($post['message'],$post['author'],$post['title'],$post['post_date'],$post['mail'],$post['id'], $post['nbComment']));
+			array_push($a, new Post($post['message'],$post['author'],$post['title'],$post['post_date'],$post['mail'],$post['id'], $post['nbComment'], $post['pros'], $post['cons']));
 		}
 			
 	}

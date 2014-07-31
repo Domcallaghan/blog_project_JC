@@ -11,7 +11,7 @@
 	$b = array();
 
 	foreach($query as $post){
-			array_push($a, new Post($post['message'],$post['author'],$post['title'],$post['post_date'],$post['mail'],$post['id'],$post['nbComment']));
+			array_push($a, new Post($post['message'],$post['author'],$post['title'],$post['post_date'],$post['mail'],$post['id'],$post['nbComment'], $post['pros'], $post['cons']));
 	}
 	for($i = 0; $i < sizeof($a); $i++){
 		
